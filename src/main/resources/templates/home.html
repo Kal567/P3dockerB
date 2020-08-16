@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+
+
+
+<!-- Black navbar with white text -->
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <ul class="navbar-nav">
+        <li class="nav-item active">
+            <a class="nav-link" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/newStudent">New Student</a>
+        </li>
+    </ul>
+</nav>
+
+<div class="container">
+    <div class="jumbotron--">
+        <h2 class="display-4">Student CRUD</h2>
+        <hr>
+    </div>
+</div>
+
+
+    <p th:if="${studentList.isEmpty()}">
+        No students.
+    </p>
+    <table class="table table-striped" style="width:100%">
+        <tr th:if="${!studentList.isEmpty()}">
+
+            <th>Student Id</th>
+            <th>Name</th>
+            <th>Last Name</th>
+            <th>Phone</th>
+            <th>Read</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        <tr th:each="student : ${studentList}">
+            <td th:text="${student.idStudent}">
+            </td>
+            <td th:text="${student.name}"></td>
+            <td th:text="${student.lastName}"></td>
+            <td th:text="${student.phone}"></td>
+            <td>
+                <a th:href="@{|/readStudent/${student.idStudent}|}">read</a>
+            </td>
+            <td>
+                <a th:href="@{|/updateStudent/${student.idStudent}|}">edit</a>
+            </td>
+            <td>
+                <a th:href="@{|/deleteStudent/${student.idStudent}|}">delete</a>
+            </td>
+        </tr>
+        </tr>
+
+    </table>
+
+
+</body>
+</html>
